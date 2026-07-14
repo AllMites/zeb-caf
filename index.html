@@ -1,527 +1,659 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- SEO -->
 <title>Zeb Café | Cafe in Moonwalk</title>
+<meta name="description" content="Zeb Café — Your daily brew, your happy place. Visit us in Moonwalk.">
+<meta name="keywords" content="Zeb Café, Cafe, Moonwalk, Philippines, local business">
+<meta name="category" content="Cafe">
+<meta property="og:title" content="Zeb Café | Cafe in Moonwalk">
+<meta property="og:description" content="Zeb Café — Your daily brew, your happy place. Visit us in Moonwalk.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Zeb Café — Your daily brew, your happy place.">
+
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700;800&family=DM+Sans:wght@400;500;600&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
---steel:#64748B;--orange:#2B1B12;--orange-dark:#C7893C;--bg:#FBF3E7;
---bg-alt:#ECEEF0;--bg-alt2:#e0e3e5;--text:#334155;--text-dark:#191c1e;
---text-muted:#44474c;--orange-light:#ffdbca;--border:rgba(196,198,205,0.3);
---ease:cubic-bezier(0.16,1,0.3,1);
+:root {
+  --primary-color: #2B1B12;
+  --accent-color: #C7893C;
+  --background-color: #FBF3E7;
+  --font-heading: 'Fraunces', sans-serif;
+  --font-body: 'DM+Sans', sans-serif;
 }
-html{scroll-behavior:smooth}
-body{font-family:'DM+Sans',sans-serif;background:var(--bg);color:var(--text-muted);
-line-height:1.5;overflow-x:hidden}
-a{text-decoration:none;color:inherit}
-img{max-width:100%;display:block}
-.container{max-width:1280px;margin:0 auto;padding:0 24px}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--background-color);
+  font-family: var(--font-body);
+  color: var(--primary-color);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { color: var(--primary-color); text-decoration: none; }
+a:hover { color: var(--accent-color); }
+
+img { display: block; max-width: 100%; height: auto; }
+
+.container { max-width: 1280px; margin: 0 auto; padding: 0 56px; }
 
 /* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:80px;
-backdrop-filter:blur(12px);background:rgba(255,255,255,0.7);
-border-bottom:1px solid rgba(255,255,255,0.2);
-box-shadow:0 4px 6px -1px rgba(0,0,0,0.1),0 2px 4px -2px rgba(0,0,0,0.1);
-transition:all .4s var(--ease)}
-.nav.scrolled{background:rgba(255,255,255,0.95)}
-.nav-inner{max-width:1280px;margin:0 auto;padding:0 24px;height:100%;
-display:flex;align-items:center;justify-content:space-between}
-.logo{font-weight:700;font-size:24px;letter-spacing:-0.6px;color:var(--text-dark)}
-.nav-links{display:flex;align-items:center;gap:32px}
-.nav-links a{font-weight:500;font-size:14px;letter-spacing:0.7px;color:var(--text-muted);
-transition:color .3s var(--ease)}
-.nav-links a:hover{color:var(--orange-dark)}
-.btn-book{background:var(--orange-dark);color:#fff;padding:10px 24px;border-radius:9999px;
-font-weight:600;font-size:14px;letter-spacing:0.7px;transition:all .3s var(--ease)}
-.btn-book:hover{background:var(--orange);transform:translateY(-2px)}
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 56px;
+  background: rgba(253,246,238,0.85);
+  backdrop-filter: blur(12px);
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: 20px; letter-spacing: -0.02em;
+}
+.nav-brand-mark {
+  width: 34px; height: 34px; border-radius: 50% 50% 50% 8px;
+  background: var(--primary-color);
+  display: grid; place-items: center;
+}
+.nav-brand-mark::after {
+  content: ''; width: 12px; height: 16px;
+  border: 2px solid var(--accent-color);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+}
+.nav-links { display: flex; align-items: center; gap: 36px; }
+.nav-links a { font-size: 15px; font-weight: 500; }
+.nav-cta {
+  font-weight: 600; background: var(--primary-color);
+  color: var(--background-color); padding: 10px 22px;
+  border-radius: 999px; transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--accent-color); color: var(--primary-color); }
 
 /* HERO */
-.hero{position:relative;height:921px;min-height:600px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=1920&amp;h=1080&amp;fit=crop') center/cover no-repeat;will-change:transform}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(25,28,30,0.8),rgba(25,28,30,0.4) 50%,rgba(25,28,30,0))}
-.hero-content{position:relative;z-index:2;max-width:672px;padding-left:24px}
-.hero h1{font-weight:800;font-size:clamp(32px,5vw,48px);line-height:1.1;letter-spacing:-1px;color:#fff;margin-bottom:24px}
-.hero p{font-size:18px;line-height:1.625;color:rgba(255,255,255,0.8);margin-bottom:16px}
-.hero-btns{display:flex;gap:16px;margin-top:32px}
-.btn-primary{background:var(--orange-dark);color:#fff;padding:16px 32px;border-radius:9999px;
-font-weight:600;font-size:14px;letter-spacing:0.7px;transition:all .3s var(--ease)}
-.btn-primary:hover{background:var(--orange);transform:translateY(-2px);box-shadow:0 8px 24px rgba(249,115,22,0.3)}
-.btn-secondary{backdrop-filter:blur(6px);background:rgba(255,255,255,0.1);
-border:1px solid rgba(255,255,255,0.2);color:#fff;padding:17px 33px;border-radius:9999px;
-font-weight:600;font-size:14px;letter-spacing:0.7px;transition:all .3s var(--ease)}
-.btn-secondary:hover{background:rgba(255,255,255,0.2)}
+.hero {
+  position: relative; display: grid;
+  grid-template-columns: 1.05fr 1fr; gap: 48px;
+  align-items: center; padding: 64px 56px 110px;
+  max-width: 1280px; margin: 0 auto;
+  background: radial-gradient(120% 90% at 85% 10%, rgba(212,165,116,0.22), rgba(253,246,238,0) 60%);
+}
+.hero-eyebrow {
+  font-family: 'Caveat', cursive; font-size: 26px;
+  color: #8ba888; transform: rotate(-2deg); margin-bottom: 14px;
+}
+.hero h1 {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: 64px; line-height: 1.05; letter-spacing: -0.03em;
+  margin: 0 0 22px; text-wrap: balance;
+}
+.hero-subhead {
+  font-size: 18px; line-height: 1.65;
+  color: rgba(74,55,40,0.75); max-width: 46ch; margin: 0 0 34px;
+}
+.hero-ctas { display: flex; align-items: center; gap: 22px; }
+.hero-cta {
+  display: inline-block; background: var(--accent-color);
+  color: var(--primary-color); font-weight: 600; font-size: 16px;
+  padding: 15px 32px; border-radius: 999px;
+  box-shadow: 0 10px 28px -10px rgba(212,165,116,0.7);
+  transition: transform 0.2s;
+}
+.hero-cta:hover { transform: translateY(-2px); }
+.hero-hours {
+  font-size: 14px; color: rgba(74,55,40,0.6);
+}
+.hero-images { position: relative; height: 520px; }
+.hero-img-main {
+  position: absolute; top: 0; right: 24px;
+  width: 62%; height: 68%; transform: rotate(2deg);
+  box-shadow: 0 24px 48px -20px rgba(74,55,40,0.35);
+  border-radius: 160px 160px 20px 20px;
+  overflow: hidden;
+}
+.hero-img-main img { width: 100%; height: 100%; object-fit: cover; border-radius: 160px 160px 20px 20px; }
+.hero-img-sub {
+  position: absolute; bottom: 36px; left: 0;
+  width: 46%; height: 46%; transform: rotate(-3deg);
+  box-shadow: 0 20px 40px -18px rgba(74,55,40,0.35);
+  border-radius: 24px; overflow: hidden;
+}
+.hero-img-sub img { width: 100%; height: 100%; object-fit: cover; border-radius: 24px; }
+.hero-img-circle {
+  position: absolute; bottom: 0; right: 0;
+  width: 190px; height: 190px;
+  box-shadow: 0 18px 36px -16px rgba(74,55,40,0.4);
+  border-radius: 50%; overflow: hidden;
+}
+.hero-img-circle img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 
-/* SERVICES */
-.services{padding:80px 24px;background:var(--bg)}
-.services-inner{max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:64px;align-items:flex-start}
-.section-header{text-align:center;width:100%;display:flex;flex-direction:column;gap:16px;align-items:center}
-.section-header h2{font-weight:700;font-size:32px;letter-spacing:-0.32px;color:var(--text-dark)}
-.section-header p{font-size:16px;color:var(--text-muted);max-width:576px;text-align:center}
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;width:100%}
-.service-card{background:#fff;border-radius:24px;padding:33px;display:flex;flex-direction:column;gap:12px;
-box-shadow:0 2px 2px rgba(100,116,139,0.05),0 1px 1px rgba(100,116,139,0.1);
-transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
-.service-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(100,116,139,0.12)}
-.service-icon{width:56px;height:56px;border-radius:16px;background:var(--orange-light);
-display:flex;align-items:center;justify-content:center;font-size:28px}
-.service-card h3{font-weight:600;font-size:24px;color:var(--text-dark);padding-top:12px}
-.service-card p{font-size:16px;color:var(--text-muted);line-height:1.5}
-.service-link{display:flex;align-items:center;gap:8px;padding-top:12px;
-font-weight:600;font-size:14px;color:var(--orange-dark);letter-spacing:0.7px;cursor:pointer}
-.service-link::after{content:'→';font-size:14px;transition:transform .3s var(--ease)}
-.service-link:hover::after{transform:translateX(4px)}
-
-/* ABOUT */
-.about{padding:80px 24px;background:var(--bg-alt)}
-.about-inner{max-width:1280px;margin:0 auto;display:flex;gap:64px;align-items:center;justify-content:center}
-.about-img{flex:1;position:relative}
-.about-img-bg{position:absolute;left:-24px;top:-24px;width:128px;height:128px;border-radius:24px;background:var(--orange-light);z-index:0}
-.about-img-frame{position:relative;z-index:1;border-radius:24px;overflow:hidden;
-aspect-ratio:4/3;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1),0 10px 10px -5px rgba(0,0,0,0.04)}
-.about-img-frame img{width:100%;height:100%;object-fit:cover}
-.about-stat{position:absolute;bottom:-40px;right:-40px;z-index:2;background:#fff;
-padding:32px;border-radius:24px;
-box-shadow:0 10px 15px -3px rgba(100,116,139,0.1),0 4px 6px -2px rgba(100,116,139,0.05)}
-.about-stat .num{font-weight:800;font-size:48px;color:var(--orange-dark);letter-spacing:-1px}
-.about-stat .label{font-weight:600;font-size:14px;color:var(--text-muted);letter-spacing:0.7px}
-.about-text{flex:1;display:flex;flex-direction:column;gap:15px}
-.about-text .eyebrow{font-weight:600;font-size:14px;color:var(--orange-dark);letter-spacing:1.4px}
-.about-text h2{font-weight:700;font-size:32px;color:var(--text-dark);letter-spacing:-0.32px;line-height:1.2}
-.about-text p{font-size:16px;color:var(--text-muted);line-height:1.5}
-.about-features{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;padding-top:16px}
-.about-feature{display:flex;align-items:center;gap:12px;font-size:16px;color:var(--text-dark)}
-.about-feature::before{content:'✓';width:22px;height:22px;display:flex;align-items:center;justify-content:center;
-background:var(--orange);color:#fff;border-radius:50%;font-size:12px;flex-shrink:0}
-
-/* TESTIMONIALS */
-.testimonials{padding:80px 24px;background:var(--bg-alt)}
-.testimonials-inner{max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:64px}
-.brands{display:flex;justify-content:center;align-items:center;gap:96px;opacity:0.6;flex-wrap:wrap}
-.brand{font-weight:600;font-size:24px;letter-spacing:-1.2px;color:var(--text-dark)}
-.testimonials h2{text-align:center;font-weight:700;font-size:32px;color:var(--text-dark);letter-spacing:-0.32px}
-.testimonial-grid{display:flex;gap:32px;justify-content:center;flex-wrap:wrap}
-.testimonial-card{background:#fff;border-radius:24px;padding:33px;width:389px;
-border:1px solid var(--border);
-box-shadow:0 2px 2px rgba(100,116,139,0.05),0 1px 1px rgba(100,116,139,0.1);
-display:flex;flex-direction:column;gap:24px}
-.stars{display:flex;gap:4px;color:var(--orange);font-size:18px}
-.testimonial-text{font-style:italic;font-size:16px;color:var(--text-muted);line-height:1.5}
-.testimonial-author{display:flex;align-items:center;gap:16px}
-.testimonial-avatar{width:48px;height:48px;border-radius:50%;background:#e6e8ea;display:flex;
-align-items:center;justify-content:center;font-weight:600;color:var(--text-dark)}
-.testimonial-name{font-weight:400;font-size:16px;color:var(--text-dark)}
-.testimonial-role{font-weight:500;font-size:12px;color:var(--text-muted)}
-
-/* CTA */
-.cta{margin:0 24px;border-radius:40px;overflow:hidden;
-box-shadow:0 20px 25px -5px rgba(0,0,0,0.1),0 10px 10px -5px rgba(0,0,0,0.04);
-display:flex;background:#e6e8ea}
-.cta-info{background:#4c5b71;padding:64px;color:#fff;flex:0 0 40%;display:flex;flex-direction:column;justify-content:center;gap:40px;position:relative;overflow:hidden}
-.cta-info h2{font-weight:700;font-size:32px;letter-spacing:-0.32px;line-height:1.2}
-.cta-info p{font-size:16px;line-height:1.625;color:rgba(211,228,254,0.8)}
-.cta-contact{display:flex;flex-direction:column;gap:24px}
-.cta-contact-item{display:flex;align-items:center;gap:16px}
-.cta-contact-icon{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.1);
-display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.cta-contact-item span{font-size:16px;color:#fff}
-.cta-form{background:#fff;padding:64px;flex:1}
-.cta-form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
-.form-field{position:relative}
-.form-field.full{grid-column:1/-1}
-.form-field label{font-weight:600;font-size:13px;color:var(--text-muted);letter-spacing:0.7px;display:block;margin-bottom:6px}
-.form-field input,.form-field select,.form-field textarea{
-width:100%;padding:14px 18px;border:none;border-radius:12px;background:#f1f5f9;
-font-family:'DM+Sans';font-size:15px;color:var(--text-dark);
-box-shadow:inset 2px 2px 5px 1px rgba(0,0,0,0.05),inset -2px -2px 5px 1px rgba(255,255,255,0.7);
-transition:box-shadow .3s var(--ease)}
-.form-field input:focus,.form-field select:focus,.form-field textarea:focus{
-outline:none;box-shadow:inset 2px 2px 5px 1px rgba(0,0,0,0.05),inset -2px -2px 5px 1px rgba(255,255,255,0.7),0 0 0 2px var(--orange)}
-.form-field textarea{resize:vertical;min-height:120px}
-.btn-submit{grid-column:1/-1;background:var(--orange-dark);color:#fff;padding:20px 32px;
-border:none;border-radius:9999px;font-weight:600;font-size:14px;letter-spacing:0.7px;
-cursor:pointer;width:100%;transition:all .3s var(--ease);margin-top:16px}
-.btn-submit:hover{background:var(--orange);transform:translateY(-2px)}
-
-/* FOOTER */
-.footer{background:var(--bg-alt2);padding:80px 24px 0}
-.footer-inner{max-width:1280px;margin:0 auto;display:flex;gap:32px;align-items:flex-start}
-.footer-col{flex:1}
-.footer-col:first-child{padding-bottom:54px}
-.footer-col:last-child{padding-bottom:104px}
-.footer-brand{font-weight:700;font-size:24px;color:var(--text-dark)}
-.footer-col p{font-size:16px;color:var(--text-muted);line-height:1.5;margin-top:23px}
-.footer-col h4{font-weight:600;font-size:14px;color:var(--orange-dark);letter-spacing:0.7px;margin-bottom:24px}
-.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:16px}
-.footer-col ul li a{font-size:16px;color:var(--text-muted);transition:color .3s var(--ease)}
-.footer-col ul li a:hover{color:var(--orange-dark)}
-.footer-social{display:flex;gap:16px}
-.footer-social a{width:40px;height:40px;border-radius:50%;background:var(--bg-alt);
-display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .3s var(--ease)}
-.footer-social a:hover{background:var(--orange);color:#fff}
-.footer-bottom{max-width:1280px;margin:0 auto;border-top:1px solid #c4c6cd;padding:32px 24px;
-text-align:center;font-size:12px;color:var(--text-muted)}
-
-/* REVEAL ANIMATIONS */
-.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.clip-reveal{clip-path:inset(0 100% 0 0);transition:clip-path 1.2s var(--ease)}
-.clip-reveal.visible{clip-path:inset(0 0 0 0)}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-.services-grid{grid-template-columns:1fr}
-.about-inner{flex-direction:column}
-.cta{flex-direction:column}
-.cta-info{flex:1}
-.cta-form-grid{grid-template-columns:1fr}
-.footer-inner{flex-direction:column}
-.hero h1{font-size:32px}
+/* SECTION HEADINGS */
+.section-heading {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: 40px; letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
-/* Focus states */
-a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--cta,#2B1B12);outline-offset:2px}
+/* MENU / SERVICES */
+.menu-section { max-width: 1280px; margin: 0 auto; padding: 40px 56px 90px; }
+.menu-header {
+  display: flex; align-items: baseline; gap: 18px; margin-bottom: 42px;
+}
+.menu-header .accent {
+  font-family: 'Caveat', cursive; font-size: 24px; color: #8ba888;
+}
+.menu-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px;
+}
+.menu-card {
+  display: flex; gap: 18px; align-items: flex-start;
+  background: #ffffff; border-radius: 22px; padding: 20px;
+  box-shadow: 0 12px 30px -18px rgba(74,55,40,0.25);
+}
+.menu-card-img {
+  width: 76px; height: 76px; flex: none;
+  border-radius: 18px; overflow: hidden;
+}
+.menu-card-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 18px; }
+.menu-card-body { min-width: 0; }
+.menu-card-title-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.menu-card-title {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: 18px;
+}
+.menu-card-desc {
+  font-size: 14px; line-height: 1.55;
+  color: rgba(74,55,40,0.7); margin: 6px 0 10px;
+}
+.menu-card-price {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: 16px; color: var(--accent-color);
+}
 
-/* REDUCED MOTION */
-@media(prefers-reduced-motion:reduce){
-*{animation-duration:0.01ms!important;transition-duration:0.01ms!important}
-.reveal{opacity:1!important;transform:none!important}
-.clip-reveal{clip-path:none!important}
-.hero-bg{transform:none!important}
+/* ABOUT */
+.about-section {
+  background: linear-gradient(180deg, rgba(212,165,116,0.14), rgba(253,246,238,0));
+}
+.about-inner {
+  max-width: 1280px; margin: 0 auto; padding: 90px 56px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center;
+}
+.about-year {
+  font-family: 'Caveat', cursive; font-size: 26px;
+  color: #8ba888; margin-bottom: 12px;
+}
+.about-body {
+  font-size: 17px; line-height: 1.7;
+  color: rgba(74,55,40,0.78); margin: 0 0 18px;
+}
+.about-body:last-child { margin: 0; }
+.about-image-wrap { position: relative; height: 460px; }
+.about-image {
+  position: absolute; inset: 0;
+  border-radius: 44% 56% 52% 48% / 48% 44% 56% 52%;
+  box-shadow: 0 28px 56px -22px rgba(74,55,40,0.35);
+  overflow: hidden;
+}
+.about-image img { width: 100%; height: 100%; object-fit: cover; }
+
+/* GALLERY */
+.gallery-section { max-width: 1280px; margin: 0 auto; padding: 30px 56px 90px; }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  grid-template-rows: 220px 220px;
+  gap: 20px;
+}
+.gallery-item {
+  border-radius: 28px; overflow: hidden;
+  box-shadow: 0 16px 36px -18px rgba(74,55,40,0.3);
+}
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+.gallery-item-tall { grid-row: span 2; }
+
+/* TEAM */
+.team-section { max-width: 1280px; margin: 0 auto; padding: 30px 56px 90px; }
+.team-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px;
+}
+.team-card {
+  background: #ffffff; border-radius: 26px; padding: 30px 28px;
+  box-shadow: 0 14px 34px -20px rgba(74,55,40,0.28);
+  text-align: center;
+}
+.team-card-img {
+  width: 120px; height: 120px; border-radius: 50%;
+  overflow: hidden; margin: 0 auto 18px;
+}
+.team-card-img img { width: 100%; height: 100%; object-fit: cover; }
+.team-card-name {
+  font-family: var(--font-heading); font-weight: 700; font-size: 18px;
+  margin: 0 0 4px;
+}
+.team-card-role {
+  font-size: 14px; color: #8ba888; font-weight: 500;
+}
+
+/* TRUST BADGES */
+.trust-section { max-width: 1280px; margin: 0 auto; padding: 10px 56px 90px; }
+.trust-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px;
+}
+.trust-card {
+  text-align: center; padding: 30px;
+}
+.trust-label {
+  font-family: var(--font-heading); font-weight: 800; font-size: 28px;
+  color: var(--accent-color); margin: 0 0 6px;
+}
+.trust-detail {
+  font-size: 15px; color: rgba(74,55,40,0.7);
+}
+
+/* TESTIMONIALS */
+.testimonials-section { max-width: 1280px; margin: 0 auto; padding: 10px 56px 100px; }
+.testimonials-header {
+  display: flex; align-items: baseline; gap: 18px; margin-bottom: 42px;
+}
+.testimonials-header .accent {
+  font-family: 'Caveat', cursive; font-size: 24px; color: #8ba888;
+}
+.testimonials-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px;
+}
+.testimonial-card {
+  background: #ffffff; border-radius: 26px; padding: 30px 28px;
+  box-shadow: 0 14px 34px -20px rgba(74,55,40,0.28);
+  display: flex; flex-direction: column; gap: 18px;
+}
+.testimonial-quote-mark {
+  font-family: 'Caveat', cursive; font-size: 40px;
+  line-height: 0.5; color: var(--accent-color);
+}
+.testimonial-text {
+  font-size: 16px; line-height: 1.65; color: rgba(74,55,40,0.85);
+}
+.testimonial-name {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: 14px; color: #8ba888;
+}
+
+/* PRICING */
+.pricing-section { max-width: 1280px; margin: 0 auto; padding: 10px 56px 100px; }
+.pricing-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px;
+}
+.pricing-card {
+  background: #ffffff; border-radius: 26px; padding: 36px 30px;
+  box-shadow: 0 14px 34px -20px rgba(74,55,40,0.28);
+  text-align: center; display: flex; flex-direction: column; gap: 14px;
+}
+.pricing-name {
+  font-family: var(--font-heading); font-weight: 700; font-size: 20px;
+}
+.pricing-price {
+  font-family: var(--font-heading); font-weight: 800; font-size: 36px;
+  color: var(--accent-color);
+}
+.pricing-features {
+  font-size: 15px; line-height: 1.65; color: rgba(74,55,40,0.7);
+  white-space: pre-line;
+}
+
+/* VISIT / CONTACT */
+.visit-section { background: var(--primary-color); color: var(--background-color); }
+.visit-inner {
+  max-width: 1280px; margin: 0 auto; padding: 90px 56px 70px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center;
+}
+.visit-eyebrow {
+  font-family: 'Caveat', cursive; font-size: 26px;
+  color: var(--accent-color); margin-bottom: 12px;
+}
+.visit-heading {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: 44px; letter-spacing: -0.02em;
+  margin: 0 0 20px; color: var(--background-color);
+}
+.visit-address {
+  font-size: 17px; line-height: 1.65;
+  color: rgba(253,246,238,0.75); margin: 0 0 30px;
+}
+.visit-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+.visit-cta-primary {
+  display: inline-block; background: var(--accent-color);
+  color: var(--primary-color); font-weight: 600; font-size: 16px;
+  padding: 14px 30px; border-radius: 999px;
+}
+.visit-cta-secondary {
+  display: inline-block;
+  border: 1.5px solid rgba(253,246,238,0.4);
+  color: var(--background-color); font-weight: 500; font-size: 16px;
+  padding: 14px 30px; border-radius: 999px;
+}
+.visit-cta-secondary:hover { border-color: var(--accent-color); color: var(--accent-color); }
+
+.hours-card {
+  background: rgba(253,246,238,0.06);
+  border: 1px solid rgba(253,246,238,0.12);
+  border-radius: 28px; padding: 36px 40px;
+}
+.hours-title {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: 20px; margin: 0 0 22px; color: var(--accent-color);
+}
+.hours-row {
+  display: flex; justify-content: space-between; gap: 24px;
+  font-size: 16px; padding: 7px 0;
+}
+.hours-row .day { color: rgba(253,246,238,0.7); }
+.hours-row .time { font-weight: 600; }
+
+.maps-embed {
+  margin-top: 24px; border-radius: 16px; overflow: hidden;
+}
+.maps-embed iframe { width: 100%; height: 200px; border: 0; display: block; }
+
+.visit-footer {
+  max-width: 1280px; margin: 0 auto; padding: 0 56px 36px;
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid rgba(253,246,238,0.12);
+}
+.visit-footer-brand {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: 15px; padding-top: 24px;
+  color: rgba(253,246,238,0.6);
+}
+.visit-footer-phone {
+  font-size: 14px; padding-top: 24px;
+  color: rgba(253,246,238,0.6);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .nav { padding: 16px 24px; }
+  .nav-links { gap: 18px; }
+  .nav-links a:not(.nav-cta) { display: none; }
+  .hero { grid-template-columns: 1fr; padding: 40px 24px 60px; }
+  .hero h1 { font-size: 40px; }
+  .hero-images { height: 360px; }
+  .menu-section, .gallery-section, .team-section, .trust-section,
+  .testimonials-section, .pricing-section { padding-left: 24px; padding-right: 24px; }
+  .menu-grid, .team-grid, .trust-grid, .testimonials-grid, .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+  .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .gallery-item-tall { grid-row: auto; }
+  .about-inner { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+  .about-image-wrap { height: 320px; }
+  .visit-inner { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+  .visit-footer { padding: 0 24px 24px; flex-direction: column; gap: 8px; }
 }
 </style>
 </head>
 <body>
-<!--NAV-->
-<nav class="nav" id="nav">
-<div class="nav-inner">
-<a href="#" class="logo">Zeb Café</a>
-<div class="nav-links">
-<a href="#services">Services</a>
-<a href="#about">About</a>
-<a href="#testimonials">Testimonials</a>
-</div>
-<a href="https://wa.me/639604448707" class="btn-book">Contact Us</a>
-</div>
+
+<!-- ═══════════ NAV ═══════════ -->
+<nav class="nav">
+  <a href="#top" class="nav-brand">
+    <div class="nav-brand-mark"></div>
+    <span>Zeb Café</span>
+  </a>
+  <div class="nav-links">
+    <a href="#menu">Menu</a>
+    <a href="#about">Our Story</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#team">Team</a>
+    <a href="https://wa.me/639604448707" class="nav-cta">Contact Us</a>
+  </div>
 </nav>
 
-<!--HERO-->
-<section class="hero" id="hero">
-<div class="hero-bg" id="heroBg"></div>
-<div class="hero-overlay"></div>
-<div class="hero-content">
-<h1>Zeb Café</h1>
-<p>Cafe</p>
-<div class="hero-btns">
-<a href="https://wa.me/639604448707" class="btn-primary">Get in Touch</a>
-<a href="#services" class="btn-secondary">View All Services</a>
-</div>
-</div>
-</section>
-<!--SERVICES-->
-<section class="services" id="services">
-<div class="services-inner">
-<div class="section-header reveal">
-<h2>Our Services</h2>
-<p>From precision tuning to routine maintenance, we provide comprehensive<br>care for your automotive investment.</p>
-</div>
-<div class="services-grid">
-<div class="service-card reveal">
-<div class="service-icon">🔧</div>
-<h3>Signature Latte</h3>
-<p>Handcrafted espresso, steamed milk, house syrup.</p>
-<div class="service-link">Learn More</div>
-</div>
-<div class="service-card reveal">
-<div class="service-icon">🛑</div>
-<h3>Cold Brew</h3>
-<p>Slow-steeped 18 hours, smooth and bold.</p>
-<div class="service-link">Learn More</div>
-</div>
-<div class="service-card reveal">
-<div class="service-icon">🛢️</div>
-<h3>Pastry Pairing</h3>
-<p>Fresh-baked daily to go with your cup.</p>
-<div class="service-link">Learn More</div>
-</div>
-<div class="service-card reveal">
-<div class="service-icon">🚗</div>
-<h3>Tire Rotation</h3>
-<p>Laser-guided alignment and precision balancing to optimize tread life and fuel efficiency.</p>
-<div class="service-link">Learn More</div>
-</div>
-<div class="service-card reveal">
-<div class="service-icon">⚙️</div>
-<h3>Transmission</h3>
-<p>Full diagnostic analysis and expert repair for both automatic and dual-clutch transmissions.</p>
-<div class="service-link">Learn More</div>
-</div>
-<div class="service-card reveal">
-<div class="service-icon">⚡</div>
-<h3>Electrical</h3>
-<p>Comprehensive testing of complex electrical looms, batteries, and onboard computer systems.</p>
-<div class="service-link">Learn More</div>
-</div>
-</div>
-</div>
-</section>
-<!--ABOUT-->
-<section class="about" id="about">
-<div class="about-inner">
-<div class="about-img reveal">
-<div class="about-img-bg"></div>
-<div class="about-img-frame clip-reveal">
-<img src="https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?w=800&amp;h=600&amp;fit=crop" alt="Zeb Café">
-</div>
-<div class="about-stat">
-<div class="num">2026+</div>
-<div class="label">Years of Master Expertise</div>
-</div>
-</div>
-<div class="about-text reveal">
-<div class="eyebrow">OUR STORY</div>
-<h2>About Zeb Café</h2>
-<p>Zeb Café is a cozy spot in Moonwalk — serving handcrafted drinks and good vibes. Whether you're catching up with friends or finding a quiet corner to work, we've got your cup ready.</p>
-<div class="about-features">
-<div class="about-feature">ASE Certified</div>
-<div class="about-feature">OEM Parts Only</div>
-<div class="about-feature">Full Warranty</div>
-<div class="about-feature">White Glove Service</div>
-</div>
-</div>
-</div>
-</section>
-<!--TESTIMONIALS-->
-<section class="testimonials" id="testimonials">
-<div class="testimonials-inner">
-<div class="brands reveal">
-<div class="brand">ASE CERTIFIED</div>
-<div class="brand">BBB A+ RATING</div>
-<div class="brand">BOSCH SERVICE</div>
-<div class="brand">AAA APPROVED</div>
-</div>
-<h2 class="reveal">Voices of Excellence</h2>
-<div class="testimonial-grid">
-<div class="testimonial-card reveal">
-<div class="stars">★★★★★</div>
-<p class="testimonial-text">"The level of professionalism at Luxe Auto is unmatched. They handled my Porsche with incredible care and the digital diagnostic report was extremely detailed."</p>
-<div class="testimonial-author">
-<div class="testimonial-avatar">JW</div>
-<div>
-<div class="testimonial-name">James Wilson</div>
-<div class="testimonial-role">911 GT3 Owner</div>
-</div>
-</div>
-</div>
-<div class="testimonial-card reveal">
-<div class="stars">★★★★★</div>
-<p class="testimonial-text">"I finally found a shop that understands Italian engineering. Their Ferrari expert is a genius. Clean, honest, and faster than the dealership."</p>
-<div class="testimonial-author">
-<div class="testimonial-avatar">ER</div>
-<div>
-<div class="testimonial-name">Elena Rossi</div>
-<div class="testimonial-role">488 Pista Owner</div>
-</div>
-</div>
-</div>
-<div class="testimonial-card reveal">
-<div class="stars">★★★★★</div>
-<p class="testimonial-text">"Outstanding customer service. They picked up my car and returned it fully detailed after the service. A true white-glove experience throughout."</p>
-<div class="testimonial-author">
-<div class="testimonial-avatar">RC</div>
-<div>
-<div class="testimonial-name">Robert Chen</div>
-<div class="testimonial-role">S-Class Owner</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!--CTA-->
-<section class="cta reveal" id="cta">
-<div class="cta-info" id="ctaInfo">
-<h2>Schedule Your<br>Appointment</h2>
-<p>Ready to experience the difference? Fill out the form and our concierge team will contact you within 60 minutes to confirm your slot.</p>
-<div class="cta-contact">
-<div class="cta-contact-item">
-<div class="cta-contact-icon">📞</div>
-<span>639604448707</span>
-</div>
-<div class="cta-contact-item">
-<div class="cta-contact-icon">✉️</div>
-<span></span>
-</div>
-</div>
-</div>
-<div class="cta-form">
-<form class="cta-form-grid" onsubmit="event.preventDefault();this.querySelector('.btn-submit').textContent='Request Sent! ✓';">
-<div class="form-field">
-<label>Name</label>
-<input type="text" placeholder="John Doe">
-</div>
-<div class="form-field">
-<label>Email</label>
-<input type="email" placeholder="john@example.com">
-</div>
-<div class="form-field">
-<label>Service Type</label>
-<select>
-<option>Signature Latte</option>
-<option>Cold Brew</option>
-<option>Pastry Pairing</option>
-<option>Tire Rotation</option>
-<option>Transmission</option>
-<option>Electrical</option>
-</select>
-</div>
-<div class="form-field">
-<label>Preferred Date</label>
-<input type="date">
-</div>
-<div class="form-field full">
-<label>Message</label>
-<textarea placeholder="Tell us about your vehicle and specific needs..."></textarea>
-</div>
-<button type="submit" class="btn-submit">Confirm Booking Request</button>
-</form>
-</div>
-</section>
-<!--FOOTER-->
-<footer class="footer">
-<div class="footer-inner">
-<div class="footer-col">
-<div class="footer-brand">Zeb Café</div>
-<p>Your daily brew, your happy place.</p>
-</div>
-<div class="footer-col">
-<h4>Quick Links</h4>
-<ul>
-<li><a href="#services">Services</a></li>
-<li><a href="#about">About Us</a></li>
-<li><a href="#testimonials">Testimonials</a></li>
-<li><a href="#cta">Book Now</a></li>
-</ul>
-</div>
-<div class="footer-col">
-<h4>Support</h4>
-<ul>
-<li><a href="#">Location</a></li>
-<li><a href="#">Hours</a></li>
-<li><a href="#">Privacy Policy</a></li>
-<li><a href="#">Terms of Service</a></li>
-</ul>
-</div>
-<div class="footer-col">
-<h4>Follow Us</h4>
-<div class="footer-social">
-<a href="#">f</a>
-<a href="#">X</a>
-<a href="#">in</a>
-</div>
-</div>
-</div>
-<div class="footer-bottom">© 2024 Zeb Café. All rights reserved.</div>
-</footer>
-<!--CREATIVE-->
-<canvas id="shaderCanvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.15;mix-blend-mode:overlay"></canvas>
-<div id="bloomOverlay" style="position:fixed;width:300px;height:300px;border-radius:50%;pointer-events:none;z-index:999;opacity:0;transition:opacity .4s ease;background:radial-gradient(circle,rgba(249,115,22,0.15) 0%,rgba(249,115,22,0) 70%);transform:translate(-50%,-50%)"></div>
-<script>
-(function(){
-const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+<!-- ═══════════ HERO ═══════════ -->
+<header id="top" class="hero">
+  <div>
+    <div class="hero-eyebrow">Serving Moonwalk ★ 5.0</div>
+    <h1>Zeb Café</h1>
+    <p class="hero-subhead">Cafe</p>
+    <div class="hero-ctas">
+      <a href="https://wa.me/639604448707" class="hero-cta">Get in Touch</a>
+      <span class="hero-hours">7:00 AM – 10:00 PM · 7:00 AM – 10:00 PM</span>
+    </div>
+  </div>
+  <div class="hero-images">
+    <div class="hero-img-main">
+      <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=1920&amp;h=1080&amp;fit=crop" alt="Zeb Café hero image">
+    </div>
+    <div class="hero-img-sub">
+      <img src="https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?w=800&amp;h=600&amp;fit=crop" alt="Zeb Café interior">
+    </div>
+    <div class="hero-img-circle">
+      <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&amp;h=400&amp;fit=crop" alt="Zeb Café signature drink">
+    </div>
+  </div>
+</header>
 
-/* === WEBGL SIMPLEX NOISE SHADER === */
-if(!reduced){
-const canvas=document.getElementById('shaderCanvas');
-const gl=canvas.getContext('webgl');
-if(gl){
-function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;gl.viewport(0,0,canvas.width,canvas.height)}
-resize();window.addEventListener('resize',resize);
-const vs=`attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.)}`;
-const fs=`precision mediump float;uniform vec2 r;uniform float t;uniform float s;
-vec3 mod289(vec3 x){return x-floor(x*(1./289.))*289.;}
-vec2 mod289(vec2 x){return x-floor(x*(1./289.))*289.;}
-vec3 permute(vec3 x){return mod289(((x*34.)+1.)*x);}
-float snoise(vec2 v){
-const vec4 C=vec4(.211324865405187,.366025403784439,-.577350269189626,.024390243902439);
-vec2 i=floor(v+dot(v,C.yy));
-vec2 x0=v-i+dot(i,C.xx);
-vec2 i1=(x0.x>x0.y)?vec2(1.,0.):vec2(0.,1.);
-vec4 x12=x0.xyxy+C.xxzz;x12.xy-=i1;i=mod289(i);
-vec3 p=permute(permute(i.y+vec3(0.,i1.y,1.))+i.x+vec3(0.,i1.x,1.));
-p=mod289((p*34.+1.)*p);p=fract(p*vec3(1./41.,1./41.,1./41.));
-float m=.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)).x;m=m*m*m*m;
-return 42.*m*dot(p-vec3(.5),vec3(dot(x0,x12.xy-.5),dot(x12.xy,x12.zw-.5),dot(x12.zw-x0,vec2(0.))));
-}
-void main(){
-vec2 uv=gl_FragCoord.xy/r.xy;uv.x*=r.x/r.y;
-float n=snoise(uv*3.+vec2(t*.1,s*.02));
-n+=.5*snoise(uv*6.+vec2(-t*.05,s*.01));
-n=.5+.5*n;
-vec3 orange=vec3(.976,.451,.086);vec3 steel=vec3(.392,.455,.549);
-vec3 col=mix(steel,orange,smoothstep(.3,.7,n));
-col*=.4+.6*pow(uv.y,.5);
-gl_FragColor=vec4(col,1.);
-}`;
-function sh(t,p){const s=gl.createShader(t);gl.shaderSource(s,p);gl.compileShader(s);return s}
-const prog=gl.createProgram();
-gl.attachShader(prog,sh(gl.VERTEX_SHADER,vs));gl.attachShader(prog,sh(gl.FRAGMENT_SHADER,fs));
-gl.linkProgram(prog);gl.useProgram(prog);
-const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
-gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]),gl.STATIC_DRAW);
-const loc=gl.getAttribLocation(prog,'a');gl.enableVertexAttribArray(loc);
-gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
-const uR=gl.getUniformLocation(prog,'r'),uT=gl.getUniformLocation(prog,'t'),uS=gl.getUniformLocation(prog,'s');
-let scrollY=0;window.addEventListener('scroll',()=>{scrollY=window.scrollY},{passive:true});
-function render(){gl.uniform2f(uR,canvas.width,canvas.height);
-gl.uniform1f(uT,performance.now()*.001);gl.uniform1f(uS,scrollY*.01);
-gl.drawArrays(gl.TRIANGLES,0,6);requestAnimationFrame(render)}render();
-}
-}
+<!-- ═══════════ MENU / SERVICES ═══════════ -->
+<section id="menu" class="menu-section">
+  <div class="menu-header">
+    <h2 class="section-heading">Our Services</h2>
+  </div>
+  <div class="menu-grid">
+    <div class="menu-card">
+      <div class="menu-card-img">
+        <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&amp;h=400&amp;fit=crop" alt="Signature Latte">
+      </div>
+      <div class="menu-card-body">
+        <div class="menu-card-title-row">
+          <h3 class="menu-card-title">Signature Latte</h3>
+        </div>
+        <p class="menu-card-desc">Handcrafted espresso, steamed milk, house syrup.</p>
+        <div class="menu-card-price"></div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-img">
+        <img src="https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?w=600&amp;h=400&amp;fit=crop" alt="Cold Brew">
+      </div>
+      <div class="menu-card-body">
+        <div class="menu-card-title-row">
+          <h3 class="menu-card-title">Cold Brew</h3>
+        </div>
+        <p class="menu-card-desc">Slow-steeped 18 hours, smooth and bold.</p>
+        <div class="menu-card-price"></div>
+      </div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-card-img">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&amp;h=400&amp;fit=crop" alt="Pastry Pairing">
+      </div>
+      <div class="menu-card-body">
+        <div class="menu-card-title-row">
+          <h3 class="menu-card-title">Pastry Pairing</h3>
+        </div>
+        <p class="menu-card-desc">Fresh-baked daily to go with your cup.</p>
+        <div class="menu-card-price"></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-/* === SCROLL REVEAL WITH 80ms STAGGER === */
-if(!reduced){
-const io=new IntersectionObserver((entries)=>{
-entries.forEach((e,i)=>{
-if(e.isIntersecting){
-setTimeout(()=>e.target.classList.add('visible'),i*80);
-io.unobserve(e.target);
-}
-});
-},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
-document.querySelectorAll('.reveal,.clip-reveal').forEach(el=>io.observe(el));
-}else{
-document.querySelectorAll('.reveal,.clip-reveal').forEach(el=>el.classList.add('visible'));
-}
+<!-- ═══════════ ABOUT ═══════════ -->
+<section id="about" class="about-section">
+  <div class="about-inner">
+    <div>
+      <div class="about-year">2026</div>
+      <h2 class="section-heading">About Zeb Café</h2>
+      <p class="about-body" style="margin-top: 24px;">Zeb Café is a cozy spot in Moonwalk — serving handcrafted drinks and good vibes. Whether you're catching up with friends or finding a quiet corner to work, we've got your cup ready.</p>
+    </div>
+    <div class="about-image-wrap">
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1461988320302-91bde64fc8e4?w=800&amp;h=600&amp;fit=crop" alt="Zeb Café interior">
+      </div>
+    </div>
+  </div>
+</section>
 
-/* === PARALLAX HERO === */
-if(!reduced){
-const heroBg=document.getElementById('heroBg');
-window.addEventListener('scroll',()=>{
-const y=window.scrollY;if(y<921){heroBg.style.transform=`translateY(${y*0.4}px) scale(1.1)`}
-},{passive:true});
-}
+<!-- ═══════════ GALLERY ═══════════ -->
+<section id="gallery" class="gallery-section">
+  <h2 class="section-heading" style="margin-bottom: 42px;">Gallery</h2>
+  <div class="gallery-grid">
+    <div class="gallery-item gallery-item-tall">
+      <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&amp;h=600&amp;fit=crop" alt="Zeb Café gallery image 1">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&amp;h=600&amp;fit=crop" alt="Zeb Café gallery image 2">
+    </div>
+    <div class="gallery-item gallery-item-tall">
+      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&amp;h=600&amp;fit=crop" alt="Zeb Café gallery image 3">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=800&amp;h=600&amp;fit=crop" alt="Zeb Café gallery image 4">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=800&amp;h=600&amp;fit=crop" alt="Zeb Café gallery image 5">
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=800&amp;h=600&amp;fit=crop" alt="Zeb Café gallery image 6">
+    </div>
+  </div>
+</section>
 
-/* === NAV SCROLL === */
-const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>40)},{passive:true});
+<!-- ═══════════ TEAM ═══════════ -->
+<section id="team" class="team-section">
+  <h2 class="section-heading" style="margin-bottom: 42px;">Meet the Team</h2>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-card-img">
+        <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=300&amp;h=300&amp;fit=crop" alt="Owner / Manager">
+      </div>
+      <h3 class="team-card-name">Owner / Manager</h3>
+      <p class="team-card-role">Zeb Café</p>
+    </div>
+    <div class="team-card">
+      <div class="team-card-img">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&amp;h=300&amp;fit=crop" alt="Lead Staff">
+      </div>
+      <h3 class="team-card-name">Lead Staff</h3>
+      <p class="team-card-role">Zeb Café</p>
+    </div>
+    <div class="team-card">
+      <div class="team-card-img">
+        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&amp;h=300&amp;fit=crop" alt="Client Relations">
+      </div>
+      <h3 class="team-card-name">Client Relations</h3>
+      <p class="team-card-role">Zeb Café</p>
+    </div>
+  </div>
+</section>
 
-/* === BLOOM OVERLAY ON CTA === */
-if(!reduced){
-const bloom=document.getElementById('bloomOverlay');
-const cta=document.getElementById('ctaInfo');
-cta.addEventListener('mousemove',e=>{
-const rect=cta.getBoundingClientRect();
-bloom.style.opacity='1';
-bloom.style.left=(e.clientX)+'px';bloom.style.top=(e.clientY)+'px';
-});
-cta.addEventListener('mouseleave',()=>{bloom.style.opacity='0'});
-}
-})();
-</script>
+<!-- ═══════════ TRUST BADGES ═══════════ -->
+<section class="trust-section">
+  <div class="trust-grid">
+    <div class="trust-card">
+      <div class="trust-label">5.0★</div>
+      <div class="trust-detail">31+ Google reviews</div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-label">Serving Moonwalk</div>
+      <div class="trust-detail">Since 2026</div>
+    </div>
+    <div class="trust-card">
+      <div class="trust-label">Walk-ins Welcome</div>
+      <div class="trust-detail">No appointment needed</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TESTIMONIALS ═══════════ -->
+<section class="testimonials-section">
+  <div class="testimonials-header">
+    <h2 class="section-heading">Kind Words</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-quote-mark">&ldquo;</div>
+      <blockquote class="testimonial-text">Best coffee in Moonwalk, hands down.</blockquote>
+      <figcaption class="testimonial-name">— Angel</figcaption>
+      <span class="trust-detail">5.0★ on Google</span>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-quote-mark">&ldquo;</div>
+      <blockquote class="testimonial-text">Cozy spot, staff remembers my order.</blockquote>
+      <figcaption class="testimonial-name">— Miko</figcaption>
+      <span class="trust-detail">5.0★ on Google</span>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-quote-mark">&ldquo;</div>
+      <blockquote class="testimonial-text">My go-to for meetings and study sessions.</blockquote>
+      <figcaption class="testimonial-name">— Trisha</figcaption>
+      <span class="trust-detail">5.0★ on Google</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PRICING ═══════════ -->
+<section class="pricing-section">
+  <h2 class="section-heading" style="margin-bottom: 42px;">Packages</h2>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <h3 class="pricing-name">Solo Brew</h3>
+      <div class="pricing-price">₱120</div>
+      <p class="pricing-features">12oz hot brew, Espresso or drip, Free WiFi seat</p>
+    </div>
+    <div class="pricing-card">
+      <h3 class="pricing-name">Café Set</h3>
+      <div class="pricing-price">₱280</div>
+      <p class="pricing-features">Specialty drink, Pastry of the day, Second cup 50% off</p>
+    </div>
+    <div class="pricing-card">
+      <h3 class="pricing-name">Group Pack (4)</h3>
+      <div class="pricing-price">₱950</div>
+      <p class="pricing-features">4 specialty drinks, Sharing platter, Reserved table 2hrs</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ VISIT / CONTACT ═══════════ -->
+<section id="visit" class="visit-section">
+  <div class="visit-inner">
+    <div>
+      <div class="visit-eyebrow">Serving Moonwalk ★ 5.0</div>
+      <h2 class="visit-heading">Come Say Hi</h2>
+      <p class="visit-address">San Agustin<br>Moonwalk, Metro Manila</p>
+      <div class="visit-ctas">
+        <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.8!2d121.04!3d14.55!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0!2sZeb+Café!5e0!3m2!1sen!2sph" class="visit-cta-primary">Get Directions</a>
+        <a href="" class="visit-cta-secondary">Instagram</a>
+        <a href="" class="visit-cta-secondary">Facebook</a>
+      </div>
+    </div>
+    <div>
+      <div class="hours-card">
+        <h3 class="hours-title">Hours</h3>
+        <div class="hours-row">
+          <span class="day">Monday – Friday</span>
+          <span class="time">7:00 AM – 10:00 PM</span>
+        </div>
+        <div class="hours-row">
+          <span class="day">Saturday – Sunday</span>
+          <span class="time">7:00 AM – 10:00 PM</span>
+        </div>
+      </div>
+      <div class="maps-embed">
+        https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.8!2d121.04!3d14.55!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0!2sZeb+Café!5e0!3m2!1sen!2sph
+      </div>
+    </div>
+  </div>
+  <div class="visit-footer">
+    <span class="visit-footer-brand">Zeb Café © 2026 · </span>
+    <span class="visit-footer-phone">639604448707</span>
+  </div>
+</section>
+
 </body>
 </html>
